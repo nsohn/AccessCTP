@@ -1,34 +1,46 @@
 import React, { Component } from 'react';
-
+import InputMask from 'react-input-mask'
+import './RegisterStudent.css';
 class RegisterStudent extends Component {
   constructor(props){
     super(props);
     this.state = {
       email: '',
       fName: '',
-      lname: '',
+      lName: '',
       emplid: 0,
       cellNum: 0
     }
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
-
-  /*
-  How can we make this function generic
-  for all of the different inputs?
-  */
   onChange(e){
     this.setState({
-      email: e.target.value
+      [e.target.name]: e.target.value
     })
+  }
+  onSubmit(){
+    const { email, fName, lName, emplid, cellNum } = this.state;
+    if (!email && !fName && !lName && !emplid && !cellNum){
+      alert('error');
+    } else {
+      const userPermission = email.substring(email.lastIndexOf("@") +1);
+
+      alert('good');
+    }
   }
   render(){
     return (
-      <div className="register-form">
         <form>
-          Email: <input title="email" onChange={this.onChange} type="email" /> {this.state.email}
+          <div className="register-form">
+            First Name: <input required name="fName" onChange={this.onChange} type="string" />
+            Last Name: <input name="lName" onChange={this.onChange} type="string" />
+            Email: <input mask="+@myhunter.cuny.edu" name="email" onChange={this.onChange} type="email" />
+            EMPLID: <input mask="999999999" name="emplid" onChange={this.onChange} type="string" />
+            Cell Phone: <InputMask  mask="+1 999-999-9999" name="cellNum" onChange={this.onChange} type="string" />
+            <button onClick={this.onSubmit}>Register</button>
+          </div>
         </form>
-      </div>
     )
   }
 }
