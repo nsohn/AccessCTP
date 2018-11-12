@@ -1,3 +1,13 @@
 .header {
-  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #4B0082;
+  padding: 20px;
+  color: white;
+}
+.header-logo {
+  background-image: url(hunterLogo.png);
+  width: 137px;
+  height: 32px;
 }
