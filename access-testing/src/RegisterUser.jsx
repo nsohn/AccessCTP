@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import InputMask from 'react-input-mask'
-import './RegisterStudent.css';
+import PageLayout from './PageLayout';
+import './RegisterUser.css';
 class RegisterStudent extends Component {
   constructor(props){
     super(props);
@@ -31,6 +32,7 @@ class RegisterStudent extends Component {
   }
   render(){
     return (
+      <PageLayout content={
         <form>
           <div className="register-form">
             First Name: <input required name="fName" onChange={this.onChange} type="string" />
@@ -41,6 +43,8 @@ class RegisterStudent extends Component {
             <button onClick={this.onSubmit}>Register</button>
           </div>
         </form>
+      }
+      />
     )
   }
 }
