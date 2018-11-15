@@ -14,6 +14,7 @@ class TestForm extends Component {
       conflictTime: false,
     }
     this.onChange = this.onChange.bind(this);
+    this.onCheckBox = this.onCheckBox.bind(this);
   }
   onChange(e){
     console.log(this.state.date);
@@ -21,23 +22,28 @@ class TestForm extends Component {
       [e.target.name] : e.target.value
     })
   }
+  onCheckBox(){
+    this.setState({
+      conflictTime: !this.state.conflictTime
+    })
+  }
   render(){
     return (
       <div className="test-modal">
         <div className="test-input">
-        Date: <input type="date" onChange={this.onChange}/>
-        Time: <input type="time"/>
-        Course: <input placeholder="EX: Eng-120" name="course" onChange={this.onChange}/>
-        Length of Test: <input type="number" name="lenOfTest" onChange={this.onChange} />
+          Date: <input type="date" onChange={this.onChange}/>
+          Time: <input type="time"/>
+          Course: <input placeholder="EX: Eng-120" name="course" onChange={this.onChange}/>
+          Length of Test: <input type="number" name="lenOfTest" onChange={this.onChange} />
 
-        Does the test conflict with your schedule? <input type="checkbox" name="conflictTime" onChange={this.onChange} />
+          Does the test conflict with your schedule? <input type="checkbox" name="conflictTime" onChange={this.onCheckBox} />
 
-        { this.state.conflictTime &&
-          <div>
-          Alternative Date: <input type="date" name="altDate" onChange={this.onChange}/>
-          Alternative Time: <input type="time" name="altTime" onChange={this.onChange}/>
-          </div>
-        }
+          { this.state.conflictTime &&
+            <div>
+            Alternative Date: <input type="date" name="altDate" onChange={this.onChange}/>
+            Alternative Time: <input type="time" name="altTime" onChange={this.onChange}/>
+            </div>
+          }
         </div>
       </div>
     )
