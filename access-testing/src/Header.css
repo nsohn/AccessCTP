@@ -7,6 +7,14 @@
   color: white;
 }
 #header-logo {
-  width: 137px;
-  height: 32px;
+  width: 200px;
+  height: 64px;
+}
+.button {
+  display: flex;
+  height: 40px;
+  padding: 0 30px;
+  border-style: solid;
+  border-width: 2px;
+  font-family: var(--proximanova-bold)
 }
