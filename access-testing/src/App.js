@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import TestForm from './TestForm';
+import Header from './Header';
 import './App.css';
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Header />
         <button onClick={this.openModal}>Add a test</button>
         <Modal
         isOpen={this.state.testModal}

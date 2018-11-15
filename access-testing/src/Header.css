@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #4B0082;
+  padding: 20px;
+  color: white;
+}
+#header-logo {
+  width: 200px;
+  height: 64px;
+}
+.button {
+  display: flex;
+  height: 40px;
+  padding: 0 30px;
+  border-style: solid;
+  border-width: 2px;
+  font-family: var(--proximanova-bold)
+}
