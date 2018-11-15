@@ -8,21 +8,16 @@ router.post('/', (req, res) => {
     first_name: data.first_name,
     last_name: data.last_name,
     email: data.email
-  })
-  .complete((err)=> {
-    if (err){
-      console.log('error');
-    } else{
-      console.log('saved');
-    }
-  })
-
-
-  console.log(req.body);
-  console.log('Arrived at user');
-  res.json({
-    statusCode: 200,
-    msg: 'success'
+  }).then((data) => { // could be then instead
+    res.json({
+      statusCode: 200,
+      msg: 'success'
+    })
+  }).catch((err) => {
+    res.json({
+      statusCode: 400,
+      msg: 'noooo'
+    })
   })
 })
 

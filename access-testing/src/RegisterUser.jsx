@@ -23,7 +23,7 @@ class RegisterUser extends Component {
   }
   onSubmit(){
     //fetch do post
-    const { email, fName, lName, emplid, cellNum } = this.state;
+    const { email, fName, lName } = this.state;
 
     // if (!email && !fName && !lName && !emplid && !cellNum){
     //   alert('error');
@@ -33,13 +33,10 @@ class RegisterUser extends Component {
       // alert('good');
     // }
     const jsonBody = {
-      'first_name': fName,
-      'last_name': lName,
-      'email': email,
-      'emplid': emplid,
-      'cell_num': cellNum
+      first_name: fName,
+      last_name: lName,
+      email: email
     }
-
 
     fetch('/api/user/', {
       method: 'POST',
@@ -48,14 +45,15 @@ class RegisterUser extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(jsonBody)
-    })
-    .then((res) => res.json()).then((data) => {
+    }).then((res) => console.log(res))/*.then((data) => {
+      console.log(data)
+      /*
       if(data.statusCode === 200) {
-        alert(data.msg)
+        alert(data.msg);
       } else {
         alert('error');
       }
-    }); // callback to App.js
+    });*/ // callback to App.js
   }
 
   // return json on backend with status code and message
