@@ -6,8 +6,7 @@
   padding: 20px;
   color: white;
 }
-.header-logo {
-  background-image: url(hunterLogo.png);
+#header-logo {
   width: 137px;
   height: 32px;
 }
