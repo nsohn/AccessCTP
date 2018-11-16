@@ -7,7 +7,8 @@ router.post('/', (req, res) => {
   models.User.create({
     first_name: data.first_name,
     last_name: data.last_name,
-    email: data.email
+    email: data.email,
+    password: data.password
   }).then((data) => { // could be then instead
     res.json({
       statusCode: 200,
