@@ -38,7 +38,7 @@ class RegisterUser extends Component {
       email: email
     }
 
-    fetch('/api/user/', {
+    fetch('/auth/signup/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -60,7 +60,6 @@ class RegisterUser extends Component {
   render(){
     return (
       <PageLayout content={
-        <form>
           <div className="register-form">
             First Name: <input required name="fName" onChange={this.onChange} type="string" />
             Last Name: <input name="lName" onChange={this.onChange} type="string" />
@@ -70,7 +69,6 @@ class RegisterUser extends Component {
             {/*Add accomodations*/}
             <button onClick={this.onSubmit}>Register</button>
           </div>
-        </form>
       }
       />
     )
