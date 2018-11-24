@@ -13,6 +13,7 @@ class ValidateTest extends Component {
     this.onChange = this.onChange.bind(this);
     this.onChangePickup = this.onChangePickup.bind(this);
     this.onChangeDropoff = this.onChangeDropoff.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
   onChange(e){
     this.setState({
@@ -25,6 +26,13 @@ class ValidateTest extends Component {
   }
   onChangeDropoff(dropoff){
     this.setState({ dropoff });
+  }
+  onSubmit(){
+    const { pickup, dropoff, notes } = this.state;
+    if (!pickup && !dropoff){
+      alert('Please fill in the pickup and dropoff information');
+    }
+    
   }
   render(){
     const options = [
@@ -55,6 +63,7 @@ class ValidateTest extends Component {
           <div>
             <textarea onChange={this.onChange} name="notes" rows="4" cols="20"/>
           </div>
+        <button onClick={this.onSubmit}>Validate Test</button>
       </div>
     )
   }
