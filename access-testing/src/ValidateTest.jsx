@@ -32,7 +32,19 @@ class ValidateTest extends Component {
     if (!pickup && !dropoff){
       alert('Please fill in the pickup and dropoff information');
     }
-    
+    const jsonBody = {
+      pickup: pickup,
+      dropoff: dropoff,
+      notes: notes
+    }
+    fetch('/validate-test', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(jsonBody)
+    }).then((res) => console.log(res))
   }
   render(){
     const options = [
