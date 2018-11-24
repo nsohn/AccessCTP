@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-dropdown": "^1.6.2",
     "react-input-mask": "^2.0.4",
     "react-scripts": "2.0.4"
   },
@@ -23,5 +24,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-"proxy": "http://localhost:8000"
+  "proxy": "http://localhost:8000"
 }
