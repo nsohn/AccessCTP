@@ -5,26 +5,17 @@ class TestForm extends Component {
     super(props);
     this.state = {
       date: {},
-      altDate: '',
-      time: 0,
-      altTime: 0,
+      time: {},
       professor: '',
       course: '',
-      lenOfTest: 0,
-      conflictTime: false,
+      lenOfTest: 0
     }
     this.onChange = this.onChange.bind(this);
-    this.onCheckBox = this.onCheckBox.bind(this);
   }
   onChange(e){
     console.log(this.state.date);
     this.setState({
       [e.target.name] : e.target.value
-    })
-  }
-  onCheckBox(){
-    this.setState({
-      conflictTime: !this.state.conflictTime
     })
   }
   render(){
@@ -35,15 +26,7 @@ class TestForm extends Component {
           Time: <input type="time"/>
           Course: <input placeholder="EX: Eng-120" name="course" onChange={this.onChange}/>
           Length of Test: <input type="number" name="lenOfTest" onChange={this.onChange} />
-
-          Does the test conflict with your schedule? <input type="checkbox" name="conflictTime" onChange={this.onCheckBox} />
-
-          { this.state.conflictTime &&
-            <div>
-            Alternative Date: <input type="date" name="altDate" onChange={this.onChange}/>
-            Alternative Time: <input type="time" name="altTime" onChange={this.onChange}/>
-            </div>
-          }
+          Professor's Hunter Email: <input type="email" name="professor" onChange={this.onChange} />
         </div>
       </div>
     )
