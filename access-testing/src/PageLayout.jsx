@@ -12,7 +12,7 @@ export default function PageLayout(props) {
   );
 }
 PageLayout.propTypes = {
-  middle    : PropTypes.node.isRequired,
+  middle    : PropTypes.node,
   topMiddle : PropTypes.node
 };
 PageLayout.defaultProps = {

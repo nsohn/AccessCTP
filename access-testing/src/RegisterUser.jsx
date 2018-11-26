@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import InputMask from 'react-input-mask'
+import Select from 'react-select';
 import PageLayout from './PageLayout';
 import './RegisterUser.css';
 
+const userOptions = [
+  {value: 'student', label: 'Student'},
+  {value: 'professor', label: 'Professor'},
+  {value: 'accessStaff', label: 'Access Staff'}
+]
 class RegisterUser extends Component {
   constructor(props){
     super(props);
@@ -11,15 +17,21 @@ class RegisterUser extends Component {
       fName: '',
       lName: '',
       emplid: 0,
-      cellNum: 0
+      cellNum: 0,
+      userPemission: null
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeUserPermissions = this.onChangeUserPermissions.bind(this);
   }
   onChange(e){
     this.setState({
       [e.target.name]: e.target.value
     })
+  }
+  onChangeUserPermissions(userPermission){
+    console.log(userPermission);
+    this.setState({ userPermission })
   }
   onSubmit(){
     //fetch do post
@@ -58,6 +70,8 @@ class RegisterUser extends Component {
 
   // return json on backend with status code and message
   render(){
+    const { userPemission } = this.state;
+    console.log(`data: ${userPemission}`);
     return (
       <PageLayout content={
           <div className="register-form">
@@ -67,6 +81,16 @@ class RegisterUser extends Component {
             EMPLID: <input mask="999999999" name="emplid" onChange={this.onChange} type="string" />
             Cell Phone: <InputMask  mask="+1 999-999-9999" name="cellNum" onChange={this.onChange} type="string" />
             {/*Add accomodations*/}
+            User Type:
+            <div className="dropdown">
+              <Select
+                options={userOptions}
+                value={userPemission}
+                onChange={this.onChangeUserPermissions}
+                placeholder="Please select which type of user you are."
+                name="userPemission"
+                />
+            </div>
             <button onClick={this.onSubmit}>Register</button>
           </div>
       }

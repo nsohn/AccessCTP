@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PageLayout from './PageLayout';
 
 class Login extends Component {
   constructor(props){
@@ -32,12 +33,15 @@ class Login extends Component {
   }
   render(){
     return (
+      <PageLayout content={
       <div>
-      {this.state.userName} Email: <input name="userName" onChange={this.onChange} type="email" />
-      {this.state.password}Password: <input name="password" onChange={this.onChange} type="password" />
+      Email: <input name="userName" onChange={this.onChange} type="email" />
+      Password: <input name="password" onChange={this.onChange} type="password" />
       <button onClick={this.onSubmit}>Login</button>
       </div>
-    )
+    }
+    />
+  )
   }
 }
 export default Login;
