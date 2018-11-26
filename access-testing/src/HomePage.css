@@ -1,0 +1,6 @@
+.homepage {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  padding: 0 140vh;
+}

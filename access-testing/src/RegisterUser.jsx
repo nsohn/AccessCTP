@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import InputMask from 'react-input-mask'
-import PageLayout from './PageLayout';
 import './RegisterUser.css';
 
 class RegisterUser extends Component {
@@ -59,7 +58,6 @@ class RegisterUser extends Component {
   // return json on backend with status code and message
   render(){
     return (
-      <PageLayout content={
           <div className="register-form">
             First Name: <input required name="fName" onChange={this.onChange} type="string" />
             Last Name: <input name="lName" onChange={this.onChange} type="string" />
@@ -69,8 +67,6 @@ class RegisterUser extends Component {
             {/*Add accomodations*/}
             <button onClick={this.onSubmit}>Register</button>
           </div>
-      }
-      />
     )
   }
 }
