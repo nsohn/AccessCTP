@@ -10,7 +10,8 @@ class RegisterUser extends Component {
       fName: '',
       lName: '',
       emplid: 0,
-      cellNum: 0
+      cellNum: 0,
+      password: ''
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -22,7 +23,7 @@ class RegisterUser extends Component {
   }
   onSubmit(){
     //fetch do post
-    const { email, fName, lName } = this.state;
+    const { email, fName, lName, password } = this.state;
 
     // if (!email && !fName && !lName && !emplid && !cellNum){
     //   alert('error');
@@ -34,7 +35,8 @@ class RegisterUser extends Component {
     const jsonBody = {
       first_name: fName,
       last_name: lName,
-      email: email
+      email: email,
+      password_hash: password
     }
 
     fetch('/auth/signup/', {
@@ -44,15 +46,13 @@ class RegisterUser extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(jsonBody)
-    }).then((res) => console.log(res))/*.then((data) => {
-      console.log(data)
-      /*
+    }).then((res) => res.json()).then((data) => {
       if(data.statusCode === 200) {
-        alert(data.msg);
+        alert(data.msg)
       } else {
         alert('error');
       }
-    });*/ // callback to App.js
+    }); // callback to App.js
   }
 
   // return json on backend with status code and message
@@ -64,6 +64,7 @@ class RegisterUser extends Component {
             Email: <input mask="+@myhunter.cuny.edu" name="email" onChange={this.onChange} type="email" />
             EMPLID: <input mask="999999999" name="emplid" onChange={this.onChange} type="string" />
             Cell Phone: <InputMask  mask="+1 999-999-9999" name="cellNum" onChange={this.onChange} type="string" />
+            Password: <input type="password" name="password" onChange={this.onChange} />
             {/*Add accomodations*/}
             <button onClick={this.onSubmit}>Register</button>
           </div>

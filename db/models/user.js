@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,
       },
     },
-    password: {
+    password_hash: {
       type: DataTypes.STRING,
       validate: {
         notEmpty: true,

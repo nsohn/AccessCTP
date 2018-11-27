@@ -17,8 +17,10 @@ router.post('/signup', (req,res) => {
     email: req.body.email,
     password_hash: req.body.password,
   }).then((user) => {
-    res.json({ msg: "user created" });
-  }).catch(() => {
+    console.log(user)
+    res.json({ statusCode: 200, msg: "user created" });
+  }).catch((err) => {
+    console.log(err)
     res.status(400).json({ msg: "error creating user" });
   });
 });

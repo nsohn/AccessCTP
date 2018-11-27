@@ -19,7 +19,7 @@ class Login extends Component {
   onSubmit(){
     const { userName, password } = this.state;
     const jsonBody = {
-      user_name: userName,
+      email: userName,
       password: password
     }
     fetch('/login', {
