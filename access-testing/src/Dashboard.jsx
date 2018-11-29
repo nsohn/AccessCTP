@@ -10,23 +10,36 @@ class Dashboard extends Component{
       typeStudent: true,
       typeProfessor: false,
       typeAdmin: false,
-      requestForm: false
+      requestForm: false,
+      validateForm: false
     };
-    this.onCloseForm = this.onCloseForm.bind(this);
-    this.onOpenForm = this.onOpenForm.bind(this);
+    this.onCloseTest = this.onCloseTest.bind(this);
+    this.onCloseValidate = this.onCloseValidate.bind(this);
+    this.onOpenTest = this.onOpenTest.bind(this);
+    this.onOpenValidate = this.onOpenValidate.bind(this);
     this.onSwitchUser = this.onSwitchUser.bind(this);
     this.onSwitchProfessor = this.onSwitchProfessor.bind(this);
     this.onSwitchAdmin = this.onSwitchAdmin.bind(this);
   }
-    onOpenForm(){
+    onOpenTest(){
       this.setState({
         requestForm: true
       });
     }
 
-    onCloseForm(){
+    onCloseTest(){
       this.setState({
         requestForm: false
+      });
+    }
+    onOpenValidate(){
+      this.setState({
+        validateForm: true
+      });
+    }
+    onCloseValidate(){
+      this.setState({
+        validateForm: false
       });
     }
 
@@ -55,16 +68,22 @@ class Dashboard extends Component{
     }
 
   render(){
-    let typeStudent = this.state.typeStudent
-    let typeProfessor = this.state.typeProfessor
-    let typeAdmin = this.state.typeAdmin
-    let requestForm = this.state.requestForm
-
-    let userView = <div></div>
-    let professorView = <div></div>
-    let adminView = <div></div>
-    let scheduledTests= <div></div>
-    let testForm = <div></div>
+    const { typeStudent, typeProfessor, typeAdmin, requestForm } = this.state;
+    
+    const testForm =
+    <div className="static-modal">
+      <Modal.Dialog bsSize="large">
+      <Modal.Header>
+        <Modal.Title>Testing Accomdation Form</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <RequestTestForm />
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={this.onCloseTest}>Close</Button>
+      </Modal.Footer>
+      </Modal.Dialog>
+    </div>
 
     let permissions =
     <div>
@@ -73,29 +92,23 @@ class Dashboard extends Component{
     <Button onClick={this.onSwitchAdmin}>Admin</Button>
     </div>
 
-    if (requestForm){
-      testForm =
-      <div className="static-modal">
-        <Modal.Dialog bsSize="large">
-        <Modal.Header>
-          <Modal.Title>Testing Accomdation Form</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <RequestTestForm />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.onCloseForm}>Close</Button>
-        </Modal.Footer>
-        </Modal.Dialog>
-      </div>
+    let name;
+    let onClick;
+    if (typeStudent){
+      name = 'Stella';
+      onClick = this.onOpenTest
+    } else if (typeProfessor){
+      name = 'Professor Ma';
+      onClick = this.onOpenValidate;
+    } else if (typeAdmin){
+      name = 'Master Admin'
+      onClick = this.onConfirmAvailable;
     }
-
-    if(typeStudent){
-      userView =
+      const userView =
       <div>
         <Jumbotron>
-          <h1>Hi Stella!</h1>
-          <Button bsStyle="primary" onClick={this.onOpenForm}>Request Test Form</Button>
+          <h1>Hi {name}</h1>
+          <Button bsStyle="primary" onClick={onClick}>Request Test Form</Button>
 
           <ListGroup>
             <ListGroupItem href="#link1">Link 1</ListGroupItem>
@@ -104,49 +117,12 @@ class Dashboard extends Component{
           </ListGroup>
         </Jumbotron>
       </div>
-    }
-
-    if (typeProfessor){
-      professorView =
-      <div>
-        <Jumbotron>
-          <h1>Hi Professor!</h1>
-          <p>Verify tests below</p>
-          <Button bsStyle="primary" onClick={this.onOpenForm}>Request Test Form</Button>
-
-          <ListGroup>
-            <ListGroupItem href="#link1">Link 1</ListGroupItem>
-            <ListGroupItem href="#link2">Link 2</ListGroupItem>
-            <ListGroupItem >Trigger an alert</ListGroupItem>
-          </ListGroup>
-        </Jumbotron>
-      </div>
-    }
-
-    if (typeAdmin){
-      adminView =
-      <div>
-        <Jumbotron>
-          <h1>Hi Access Staff!</h1>
-          <p>Confirm the tests below</p>
-          <Button bsStyle="primary" onClick={this.onOpenForm}>Request Test Form</Button>
-
-          <ListGroup>
-            <ListGroupItem href="#link1">Link 1</ListGroupItem>
-            <ListGroupItem href="#link2">Link 2</ListGroupItem>
-            <ListGroupItem >Trigger an alert</ListGroupItem>
-          </ListGroup>
-        </Jumbotron>
-      </div>
-    }
 
     return(
       <div>
       {permissions}
       {userView}
-      {professorView}
-      {adminView}
-      {testForm}
+      {requestForm ? testForm : ''}
       </div>
     );
   }
