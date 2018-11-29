@@ -7,6 +7,7 @@ class RequestTestForm extends Component {
     this.state = {
       courseName:"",
       professorName:"",
+      email: "",
       examStart: 0,
       examLength: 0
     }
@@ -21,7 +22,6 @@ class RequestTestForm extends Component {
 render(){
   return (
     <div className="test-form">
-      <h2>Testing Accomdation Form </h2>
         Course Number: <input required name="courseName" onChange={this.onChange} type="string" />
         Name of Professor: <input name="professorName" onChange={this.onChange} type="string" />
         Professor's Email: <input mask="+@hunter.cuny.edu" name="email" onChange={this.onChange} type="email" />
