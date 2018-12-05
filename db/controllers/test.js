@@ -12,7 +12,8 @@ router.post('/addTest', (req,res) => {
     exam_start: data.exam_start,
     exam_end: data.exam_end,
     validated: data.validated,
-    confirmed: data.confirmed
+    confirmed: data.confirmed,
+    date: data.date
   }).then((data) => {
     res.json({ msg: "test created" });
   }).catch(() => {
