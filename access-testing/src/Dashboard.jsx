@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RequestTestForm from './RequestTestForm';
+import TestRowManager from './TestRowManager';
 import './Dashboard.css';
 import { Modal, ListGroup, ListGroupItem, Jumbotron, Button, Badge} from "react-bootstrap";
 
@@ -11,7 +12,6 @@ class Dashboard extends Component{
       typeProfessor: false,
       typeAdmin: false,
       isStudent: false,
-
       validateForm: false
     };
     this.onCloseTest = this.onCloseTest.bind(this);
@@ -121,6 +121,7 @@ class Dashboard extends Component{
         </div>
       {userView}
       {isStudent ? testForm : ''}
+        <TestRowManager />
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './RequestTestForm.css';
-import { FormGroup, FormControl, ControlLabel, Modal, ListGroup, ListGroupItem, Jumbotron, Button, Badge} from "react-bootstrap";
+import { FormGroup, FormControl } from "react-bootstrap";
 
 class RequestTestForm extends Component {
   constructor(props){
@@ -10,9 +10,10 @@ class RequestTestForm extends Component {
       professorName:"",
       email: "",
       examStart: 0,
-      examLength: ""
+      examLength: 0
     }
       this.onChange = this.onChange.bind(this);
+      this.onSubmit = this.onSubmit.bind(this);
   }
   onChange(e){
     this.setState({
@@ -22,7 +23,7 @@ class RequestTestForm extends Component {
   onSubmit(){
     //fetch do post
     const { courseName, professorName, email, examStart, examLength } = this.state;
-    const exam_end = examStart + examLength;
+    const exam_end = examStart + (examLength*2);
     // if (!email && !fName && !lName && !emplid && !cellNum){
     //   alert('error');
     // } else {
@@ -37,8 +38,9 @@ class RequestTestForm extends Component {
       exam_start: examStart,
       exam_end: exam_end
     }
+    console.log(jsonBody);
 
-    fetch('/addTest/', {
+    fetch('/test/addTest/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -86,13 +88,20 @@ render(){
         placeholder="@hunter.cuny.edu"
         onChange={this.onChange}
       /> <br/>
-        <h5 class="moveLeft">Exam Start Time: </h5> <input name="examStart" onChange={this.onChange} type="time" /> <br />
+        <h5 class="moveLeft">Exam Start Time: </h5>
+        <FormControl
+          name="examStart"
+          type="number"
+          value={this.state.examStart}
+          placeholder="Enter begin time"
+          onChange={this.onChange}
+        /> <br />
         <h5 class="moveLeft">Exam Time Length</h5>
         <FormControl
           name="examLength"
-          type="string"
+          type="number"
           value={this.state.examLength}
-          placeholder="Enter time in minutes"
+          placeholder="Enter time in hours"
           onChange={this.onChange}
         /> <br />
         <button class="button" onClick={this.onSubmit}>Submit Testing Form</button>

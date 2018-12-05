@@ -18,4 +18,12 @@ router.post('/addTest', (req,res) => {
   });
 });
 
+router.get('/tests', function(req, res ){
+    models.Test.findAll()
+    .then((tests) => {
+    res.json(tests)
+    })
+    .catch((err) => {res.status(401).json(err)})
+})
+
 module.exports = router;
