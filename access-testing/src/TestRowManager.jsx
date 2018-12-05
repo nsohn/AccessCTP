@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './TestRowManager.css';
+import { Table, Button} from "react-bootstrap";
 
 class TestRowManager extends Component {
   constructor(props){
@@ -83,31 +84,32 @@ class TestRowManager extends Component {
     const { tests } = this.state;
     return (
       <div className="test-data">
+      <Table responsive>
+      <thead>
+        <tr>
+          <th>Course #</th>
+          <th>Professor's Name</th>
+          <th>Exam Start</th>
+          <th>Exam End</th>
+          <th>Validated by Professor</th>
+          <th>Confirmed by Office</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
       {tests ? tests.map(test =>
-           <div key={test.course_number} className="test-row">
-             <div className="test-data">
-               {test.course_number}
-             </div>
-               <div className="test-data">
-                 {test.prof_name}
-                </div>
-               <div className="test-data">
-                 {test.exam_start}
-                </div>
-                <div className="test-data">
-                  {test.exam_end}
-              </div>
-              <div className="test-data">
-                {test.validated ? <p>yes</p> : <p>no</p>}
-            </div>
-            <div className="test-data">
-              {test.confirmed ? <p>yes</p> : <p>no</p>}
-          </div>
-          <div className="test-data">
-            <button onClick={submitValidation} name={test.id}>{buttonLabel}</button>
-          </div>
-          </div>
+        <tr key={test.course_number}>
+               <td>{test.course_number}</td>
+               <td>{test.prof_name}</td>
+               <td>{test.exam_start}</td>
+               <td>{test.exam_end}</td>
+               <td>{test.validated ? <p>yes</p> : <p>no</p>}</td>
+               <td>{test.confirmed ? <p>yes</p> : <p>no</p>}</td>
+               <td><Button bsStyle="danger" onClick={submitValidation} name={test.id}>Delete</Button></td>
+          </tr>
          ) : ''}
+         </tbody>
+         </Table>
       </div>
     );
   }

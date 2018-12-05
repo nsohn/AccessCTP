@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import RequestTestForm from './RequestTestForm';
 import TestRowManager from './TestRowManager';
 import './Dashboard.css';
-import { Modal, ListGroup, ListGroupItem, Jumbotron, Button, Badge} from "react-bootstrap";
+import { Table, Modal, ListGroup, ListGroupItem, Jumbotron, Button, Badge} from "react-bootstrap";
 
 class Dashboard extends Component{
   constructor(props){
@@ -103,11 +103,10 @@ class Dashboard extends Component{
         <Jumbotron>
           <h1>Hi {name}</h1>
           <Button bsStyle="primary" onClick={onClick}>Request Test Form</Button>
-
           <ListGroup>
-            <ListGroupItem href="#link1">Link 1</ListGroupItem>
-            <ListGroupItem href="#link2">Link 2</ListGroupItem>
-            <ListGroupItem >Trigger an alert</ListGroupItem>
+            <ListGroupItem>
+              <TestRowManager />
+            </ListGroupItem>
           </ListGroup>
         </Jumbotron>
       </div>
