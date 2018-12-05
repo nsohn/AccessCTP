@@ -9,8 +9,9 @@ class RequestTestForm extends Component {
       courseName:"",
       professorName:"",
       email: "",
-      examStart: 0,
-      examLength: 0
+      examStart: "",
+      examLength: "",
+      date: ""
     }
       this.onChange = this.onChange.bind(this);
       this.onSubmit = this.onSubmit.bind(this);
@@ -22,23 +23,18 @@ class RequestTestForm extends Component {
   }
   onSubmit(){
     //fetch do post
-    const { courseName, professorName, email, examStart, examLength } = this.state;
-    const exam_end = examStart + (examLength*2);
-    // if (!email && !fName && !lName && !emplid && !cellNum){
-    //   alert('error');
-    // } else {
-      // const userPermission = email.substring(email.lastIndexOf("@") +1);
-
-      // alert('good');
-    // }
+    const { courseName, professorName, email, examStart, examLength, date } = this.state;
+    const exam_end = ((parseInt(examStart) + parseInt(examLength*2)) % 12) + ':00';
+    let examStartTime = examStart + ':00';
     const jsonBody = {
       course_number: courseName,
       prof_name: professorName,
       email: email,
-      exam_start: examStart,
+      exam_start: examStartTime,
       exam_end: exam_end,
       validated: false,
-      confirmed: false
+      confirmed: false,
+      date: date
     }
     console.log(jsonBody);
 
@@ -88,6 +84,14 @@ render(){
         type="email"
         value={this.state.email}
         placeholder="@hunter.cuny.edu"
+        onChange={this.onChange}
+      /> <br/>
+      <h5 class="moveLeft">Date</h5>
+      <FormControl
+        name="date"
+        type="string"
+        value={this.state.date}
+        placeholder="12/15/18"
         onChange={this.onChange}
       /> <br/>
         <h5 class="moveLeft">Exam Start Time: </h5>

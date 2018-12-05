@@ -89,6 +89,7 @@ class TestRowManager extends Component {
         <tr>
           <th>Course #</th>
           <th>Professor's Name</th>
+          <th>Date</th>
           <th>Exam Start</th>
           <th>Exam End</th>
           <th>Validated by Professor</th>
@@ -101,6 +102,7 @@ class TestRowManager extends Component {
         <tr key={test.course_number}>
                <td>{test.course_number}</td>
                <td>{test.prof_name}</td>
+               <td>{test.date}</td>
                <td>{test.exam_start}</td>
                <td>{test.exam_end}</td>
                <td>{test.validated ? <p>yes</p> : <p>no</p>}</td>
