@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './RequestTestForm.css';
+import { FormGroup, FormControl, ControlLabel, Modal, ListGroup, ListGroupItem, Jumbotron, Button, Badge} from "react-bootstrap";
 
 class RequestTestForm extends Component {
   constructor(props){
@@ -9,7 +10,7 @@ class RequestTestForm extends Component {
       professorName:"",
       email: "",
       examStart: 0,
-      examLength: 0
+      examLength: ""
     }
       this.onChange = this.onChange.bind(this);
   }
@@ -22,13 +23,44 @@ class RequestTestForm extends Component {
 render(){
   return (
     <div className="test-form">
-        Course Number: <input required name="courseName" onChange={this.onChange} type="string" />
-        Name of Professor: <input name="professorName" onChange={this.onChange} type="string" />
-        Professor's Email: <input mask="+@hunter.cuny.edu" name="email" onChange={this.onChange} type="email" />
-        Exam Start Time: <input name="examStart" onChange={this.onChange} type="time" />
-        Length of Exam (in minutes): <input name="examLength" onChange={this.onChange} type="number" />
-        {/*Add accomodations*/}
-        <button onClick={this.onSubmit}>Request Testing Form</button>
+      <form>
+      <FormGroup controlId="formBasicText" >
+      <h5 class="moveLeft">Course Number</h5>
+      <FormControl
+        name = "courseName"
+        type="text"
+        value={this.state.courseName}
+        placeholder="e.g. CSCI 150"
+        onChange={this.onChange}
+      /> <br />
+      <h5 class="moveLeft">Name of Professor</h5>
+      <FormControl
+        name = "professorName"
+        type="string"
+        value={this.state.professorName}
+        placeholder="Enter first and last name of your professor"
+        onChange={this.onChange}
+      /> <br />
+      <h5 class="moveLeft">Professor's Email</h5>
+      <FormControl
+        name="email"
+        type="email"
+        value={this.state.email}
+        placeholder="@hunter.cuny.edu"
+        onChange={this.onChange}
+      /> <br/>
+        <h5 class="moveLeft">Exam Start Time: </h5> <input name="examStart" onChange={this.onChange} type="time" /> <br />
+        <h5 class="moveLeft">Exam Time Length</h5>
+        <FormControl
+          name="examLength"
+          type="string"
+          value={this.state.examLength}
+          placeholder="Enter time in minutes"
+          onChange={this.onChange}
+        /> <br />
+        <button class="button" onClick={this.onSubmit}>Submit Testing Form</button>
+      </FormGroup>
+      </form>
       </div>
   )
 }
