@@ -21,7 +21,7 @@ class TestRowManager extends Component {
            <div key={test.course_number} className="test-row">
              <div className="test-data">
                {test.course_number}
-               </div>
+             </div>
                <div className="test-data">
                  {test.prof_name}
                 </div>
@@ -31,6 +31,15 @@ class TestRowManager extends Component {
                 <div className="test-data">
                   {test.exam_end}
               </div>
+              <div className="test-data">
+                {test.validated ? <p>yes</p> : <p>no</p>}
+            </div>
+            <div className="test-data">
+              {test.confirmed ? <p>yes</p> : <p>no</p>}
+          </div>
+          <div className="test-data">
+            <button onClick={()=> alert('this will do something')}>Button</button>
+          </div>
             </div>
          ) : ''}
       </div>

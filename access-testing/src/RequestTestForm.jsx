@@ -36,7 +36,9 @@ class RequestTestForm extends Component {
       prof_name: professorName,
       email: email,
       exam_start: examStart,
-      exam_end: exam_end
+      exam_end: exam_end,
+      validated: false,
+      confirmed: false
     }
     console.log(jsonBody);
 
