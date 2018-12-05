@@ -19,6 +19,43 @@ class RequestTestForm extends Component {
       [e.target.name]: e.target.value
     })
   }
+  onSubmit(){
+    //fetch do post
+    const { courseName, professorName, email, examStart, examLength } = this.state;
+    const exam_end = examStart + examLength;
+    // if (!email && !fName && !lName && !emplid && !cellNum){
+    //   alert('error');
+    // } else {
+      // const userPermission = email.substring(email.lastIndexOf("@") +1);
+
+      // alert('good');
+    // }
+    const jsonBody = {
+      course_number: courseName,
+      prof_name: professorName,
+      email: email,
+      exam_start: examStart,
+      exam_end: exam_end
+    }
+
+    fetch('/addTest/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(jsonBody)
+    }).then((res) => console.log(res))/*.then((data) => {
+      console.log(data)
+      /*
+      if(data.statusCode === 200) {
+        alert(data.msg);
+      } else {
+        alert('error');
+      }
+    });*/ // callback to App.js
+  }
+
 
 render(){
   return (
