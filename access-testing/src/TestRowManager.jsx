@@ -105,8 +105,8 @@ class TestRowManager extends Component {
                <td>{test.date}</td>
                <td>{test.exam_start}</td>
                <td>{test.exam_end}</td>
-               <td>{test.validated ? <p>yes</p> : <p>no</p>}</td>
-               <td>{test.confirmed ? <p>yes</p> : <p>no</p>}</td>
+               <td>{test.validated ? <p>Validated</p> : <p>Not Yet</p>}</td>
+               <td>{test.confirmed ? <p>Confirmed</p> : <p>Not Yet</p>}</td>
                <td><Button bsStyle="success" onClick={submitValidation} name={test.id}>{buttonLabel}</Button></td>
           </tr>
          ) : ''}
