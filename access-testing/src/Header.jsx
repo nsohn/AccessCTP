@@ -13,7 +13,7 @@ function Header() {
      <div className="header">
         <img src={hunterLogo} alt="Hunter Logo" id="header-logo"/>
         <h1 className="header-text">Access Your Test</h1>
-        <button className="button" onClick={() => {alert('You Caught Us')}}>Login</button>
+        <button className="button" onClick={() => {alert('You Caught Us')}}>Log out</button>
      </div>
 
      );

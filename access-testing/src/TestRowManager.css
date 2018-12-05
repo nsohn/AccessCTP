@@ -1,0 +1,8 @@
+.test-row {
+  display: flex;
+  justify-content: space-between;
+}
+.test-data {
+  display: flex;
+  flex-direction: column;
+}

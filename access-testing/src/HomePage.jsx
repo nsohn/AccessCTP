@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import Login from './Login';
 import Register from './RegisterUser';
+import TestRowManager from './TestRowManager';
 
 import './HomePage.css'
 
