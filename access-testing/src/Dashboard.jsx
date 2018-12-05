@@ -102,10 +102,14 @@ class Dashboard extends Component{
       <div>
         <Jumbotron>
           <h1>Hi {name}</h1>
-          <Button bsStyle="primary" onClick={onClick}>Request Test Form</Button>
+          {typeStudent ? <Button bsStyle="primary" onClick={onClick}>Request Test Form</Button> : ''}
           <ListGroup>
             <ListGroupItem>
-              <TestRowManager />
+              <TestRowManager
+              isStudent={typeStudent}
+              typeProfessor={typeProfessor}
+              typeAdmin={typeAdmin}
+              />
             </ListGroupItem>
           </ListGroup>
         </Jumbotron>
@@ -120,11 +124,6 @@ class Dashboard extends Component{
         </div>
       {userView}
       {isStudent ? testForm : ''}
-        <TestRowManager
-        isStudent={typeStudent}
-        typeProfessor={typeProfessor}
-        typeAdmin={typeAdmin}
-        />
       </div>
     );
   }

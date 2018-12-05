@@ -71,7 +71,7 @@ class TestRowManager extends Component {
     const { isStudent, typeProfessor, typeAdmin } = this.props;
     let buttonLabel, submitValidation;
     if (isStudent){
-      buttonLabel = 'Delete';
+      buttonLabel = 'Remind';
       submitValidation = this.onDelete;
     } else if (typeProfessor) {
       buttonLabel = 'Validate';
@@ -105,7 +105,7 @@ class TestRowManager extends Component {
                <td>{test.exam_end}</td>
                <td>{test.validated ? <p>yes</p> : <p>no</p>}</td>
                <td>{test.confirmed ? <p>yes</p> : <p>no</p>}</td>
-               <td><Button bsStyle="danger" onClick={submitValidation} name={test.id}>Delete</Button></td>
+               <td><Button bsStyle="success" onClick={submitValidation} name={test.id}>{buttonLabel}</Button></td>
           </tr>
          ) : ''}
          </tbody>
