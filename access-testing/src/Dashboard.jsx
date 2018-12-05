@@ -10,7 +10,8 @@ class Dashboard extends Component{
       typeStudent: true,
       typeProfessor: false,
       typeAdmin: false,
-      requestForm: false,
+      isStudent: false,
+
       validateForm: false
     };
     this.onCloseTest = this.onCloseTest.bind(this);
@@ -23,13 +24,13 @@ class Dashboard extends Component{
   }
     onOpenTest(){
       this.setState({
-        requestForm: true
+        isStudent: true
       });
     }
 
     onCloseTest(){
       this.setState({
-        requestForm: false
+        isStudent: false
       });
     }
     onOpenValidate(){
@@ -68,11 +69,11 @@ class Dashboard extends Component{
     }
 
   render(){
-    const { typeStudent, typeProfessor, typeAdmin, requestForm } = this.state;
-    
+    const { typeStudent, typeProfessor, typeAdmin, isStudent } = this.state;
+
     const testForm =
     <div className="static-modal">
-      <Modal.Dialog bsSize="large">
+      <Modal.Dialog Size="large">
       <Modal.Header>
         <Modal.Title>Testing Accomdation Form</Modal.Title>
       </Modal.Header>
@@ -85,20 +86,13 @@ class Dashboard extends Component{
       </Modal.Dialog>
     </div>
 
-    let permissions =
-    <div>
-    <Button onClick={this.onSwitchUser}>Student</Button>
-    <Button onClick={this.onSwitchProfessor}>Professor</Button>
-    <Button onClick={this.onSwitchAdmin}>Admin</Button>
-    </div>
-
     let name;
     let onClick;
     if (typeStudent){
-      name = 'Stella';
+      name = 'Student: Noam Sohn';
       onClick = this.onOpenTest
     } else if (typeProfessor){
-      name = 'Professor Ma';
+      name = 'Professor Stella Ma';
       onClick = this.onOpenValidate;
     } else if (typeAdmin){
       name = 'Master Admin'
@@ -120,9 +114,13 @@ class Dashboard extends Component{
 
     return(
       <div>
-      {permissions}
+        <div>
+          <Button onClick={this.onSwitchUser}>Student</Button>
+          <Button onClick={this.onSwitchProfessor}>Professor</Button>
+          <Button onClick={this.onSwitchAdmin}>Admin</Button>
+        </div>
       {userView}
-      {requestForm ? testForm : ''}
+      {isStudent ? testForm : ''}
       </div>
     );
   }
