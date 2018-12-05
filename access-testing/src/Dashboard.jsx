@@ -121,7 +121,11 @@ class Dashboard extends Component{
         </div>
       {userView}
       {isStudent ? testForm : ''}
-        <TestRowManager />
+        <TestRowManager
+        isStudent={typeStudent}
+        typeProfessor={typeProfessor}
+        typeAdmin={typeAdmin}
+        />
       </div>
     );
   }

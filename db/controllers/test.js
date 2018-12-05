@@ -27,5 +27,50 @@ router.get('/tests', function(req, res ){
     })
     .catch((err) => {res.status(401).json(err)})
 })
+router.post('/validateTest', (req,res) => {
+  models.Test.findById(req.body.test_id)
+  .then((test) => {
+    test.update({
+      validated: true
+    })
+    .then((updatedTest) => {
+      res.json({ test: updatedTest, msg: "test validated" });
+    }).catch(() => {
+      res.status(400).json({ msg: "error creating test" });
+    })
+  }).catch(() => {
+    res.status(400).json({ msg: "error creating test" });
+  })
+})
+router.post('/deleteTest', (req,res) => {
+  models.Test.findById(req.body.test_id)
+  .then((test) => {
+    test.update({
+      validated: true
+    })
+    .then((updatedTest) => {
+      res.json({ test: updatedTest, msg: "test validated" });
+    }).catch(() => {
+      res.status(400).json({ msg: "error creating test" });
+    })
+  }).catch(() => {
+    res.status(400).json({ msg: "error creating test" });
+  })
+})
+router.post('/confirmTest', (req,res) => {
+  models.Test.findById(req.body.test_id)
+  .then((test) => {
+    test.update({
+      confirmed: true
+    })
+    .then((updatedTest) => {
+      res.json({ test: updatedTest, msg: "test confirmed" });
+    }).catch(() => {
+      res.status(400).json({ msg: "error confirming test" });
+    })
+  }).catch(() => {
+    res.status(400).json({ msg: "error confirming test" });
+  })
+})
 
 module.exports = router;
