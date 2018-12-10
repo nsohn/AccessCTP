@@ -89,19 +89,19 @@ class Dashboard extends Component{
     let name;
     let onClick;
     if (typeStudent){
-      name = 'Student: Noam Sohn';
+      name = 'Student View';
       onClick = this.onOpenTest
     } else if (typeProfessor){
-      name = 'Professor Stella Ma';
+      name = 'Professor View';
       onClick = this.onOpenValidate;
     } else if (typeAdmin){
-      name = 'Master Admin'
+      name = 'Admin View'
       onClick = this.onConfirmAvailable;
     }
       const userView =
       <div>
         <Jumbotron>
-          <h1>Hi {name}</h1>
+          <h1>{name}</h1>
           {typeStudent ? <Button bsStyle="primary" onClick={onClick}>Request Test Form</Button> : ''}
           <ListGroup>
             <ListGroupItem>
