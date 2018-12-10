@@ -10,6 +10,7 @@ class TestRowManager extends Component {
     }
     this.onValidate = this.onValidate.bind(this);
     this.onConfirm = this.onConfirm.bind(this);
+    this.sortTests = this.sortTests.bind(this);
   }
   componentDidMount() {
   fetch('/test/tests')
@@ -64,21 +65,30 @@ class TestRowManager extends Component {
       .then(res =>  res.json())
       .then(tests => this.setState({ tests: tests }));
     });
+    this.sortTests();
   }
+  sortTests(){
+    const { tests } = this.state;
+    tests.sort((a,b) => a.test_id > b.test_id);
+    this.setState({tests});
 
+  }
 
   render(){
     const { isStudent, typeProfessor, typeAdmin } = this.props;
-    let buttonLabel, submitValidation;
+    let buttonLabel, submitValidation, userTitle;
     if (isStudent){
       buttonLabel = 'Remind';
       submitValidation = this.onDelete;
+      userTitle = 'Professor Name'
     } else if (typeProfessor) {
       buttonLabel = 'Validate';
       submitValidation = this.onValidate;
+      userTitle = 'Student Name'
     } else if (typeAdmin) {
       buttonLabel = 'Confirm';
       submitValidation = this.onConfirm;
+      userTitle = 'Professor Name'
     }
 
     const { tests } = this.state;
@@ -88,7 +98,8 @@ class TestRowManager extends Component {
       <thead>
         <tr>
           <th>Course #</th>
-          <th>Professor's Name</th>
+          <th>{userTitle}</th>
+          <th>{typeAdmin ? 'Student Name' : ''}</th>
           <th>Date</th>
           <th>Exam Start</th>
           <th>Exam End</th>
@@ -98,10 +109,12 @@ class TestRowManager extends Component {
         </tr>
       </thead>
       <tbody>
+
       {tests ? tests.map(test =>
         <tr key={test.course_number}>
                <td>{test.course_number}</td>
-               <td>{test.prof_name}</td>
+               <td>{typeProfessor ? test.student_name : test.prof_name }</td>
+               <td>{typeAdmin ? test.student_name : ''}</td>
                <td>{test.date}</td>
                <td>{test.exam_start}</td>
                <td>{test.exam_end}</td>
@@ -109,7 +122,7 @@ class TestRowManager extends Component {
                <td>{test.confirmed ? <p>Confirmed</p> : <p>Not Yet</p>}</td>
                <td><Button bsStyle="success" onClick={submitValidation} name={test.id}>{buttonLabel}</Button></td>
           </tr>
-         ) : ''}
+        ) : ''}
          </tbody>
          </Table>
       </div>
