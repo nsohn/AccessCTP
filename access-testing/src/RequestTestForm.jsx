@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import './RequestTestForm.css';
 import { FormGroup, FormControl } from "react-bootstrap";
 
+const studentsNames = ['Noam Sohn', 'Stella Ma', 'Justin Pacquing',
+'Miguel Acero', 'Rita Kirzhner', 'Nora Anderson', 'Jeff Sohn', 'Virginia Lu',
+'Ezra Luca', 'Max Spitz', 'Ben Schluger', 'Becca Rimsky', 'Daniel Stecker',
+'Ashley Papa', 'Mikey Mechaly', 'Alex Brizel', 'Nathan Schoeffler', 'Justin Cutler',
+'Joe Wittenberg'];
+
+
 class RequestTestForm extends Component {
   constructor(props){
     super(props);
@@ -22,7 +29,7 @@ class RequestTestForm extends Component {
     })
   }
   onSubmit(){
-    //fetch do post
+    const student_name = studentsNames[Math.floor(Math.random() * studentsNames.length)]
     const { courseName, professorName, email, examStart, examLength, date } = this.state;
     const exam_end = ((parseInt(examStart) + parseInt(examLength*2)) % 12) + ':00';
     let examStartTime = examStart + ':00';
@@ -34,7 +41,8 @@ class RequestTestForm extends Component {
       exam_end: exam_end,
       validated: false,
       confirmed: false,
-      date: date
+      date: date,
+      student_name: student_name
     }
     console.log(jsonBody);
 
